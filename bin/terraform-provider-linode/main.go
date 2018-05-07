@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/LinodeContent/terraform-provider-linode"
 	"github.com/hashicorp/terraform/plugin"
+	"github.com/poppen/terraform-provider-linode"
 )
 
 func main() {
