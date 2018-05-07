@@ -140,7 +140,7 @@ func resourceLinodeLinodeRead(d *schema.ResourceData, meta interface{}) error {
 	if len(linodes.Errors) != 0 {
 		var output = ""
 		for _, value := range linodes.Errors {
-			output = fmt.Sprintf("%s\n%s", output, value)
+			output = fmt.Sprintf("%s\n%v", output, value)
 		}
 		return fmt.Errorf("Failed to find the specified linode. The following errors occured: %s", output)
 	}
@@ -432,7 +432,7 @@ func resourceLinodeLinodeDelete(d *schema.ResourceData, meta interface{}) error 
 	client := meta.(*linodego.Client)
 	id, err := strconv.ParseInt(d.Id(), 10, 64)
 	if err != nil {
-		return fmt.Errorf("Failed to parse linode id %d as int", d.Id())
+		return fmt.Errorf("Failed to parse linode id %s as int", d.Id())
 	}
 	_, err = client.Linode.Delete(int(id), true)
 	if err != nil {
