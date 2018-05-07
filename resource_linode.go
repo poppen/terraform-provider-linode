@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/hashicorp/terraform/helper/schema"
-	"github.com/taoh/linodego"
+	"github.com/poppen/linodego"
 	"golang.org/x/crypto/sha3"
 )
 
@@ -525,7 +525,7 @@ func getKernelID(client *linodego.Client, kernelName string) (int, error) {
 // getKernelList populates kernelList with all of the available kernels. kernelList is purely to reduce the number of
 // api calls as the available kernels are unlikely to change within a single terraform run.
 func getKernelList(client *linodego.Client) error {
-	kernels, err := client.Avail.Kernels()
+	kernels, err := client.Avail.FilterKernels(0, 1)
 	if err != nil {
 		return err
 	}
